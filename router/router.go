@@ -13,5 +13,6 @@ func RegisterRoutes(c *gin.Engine) {
 	router.POST("/createuser", controller.CreateUser)
 	router.GET("/readusers", controller.GetUser)
 	router.PUT("/deleteuser", controller.DeleteUser)
-	router.DELETE("/updateuser", controller.GetUserbyid)
+	router.DELETE("/getuserbyid", controller.GetUserbyid)
+	router.PUT("/updateuser", controller.UpdateUser)
 }

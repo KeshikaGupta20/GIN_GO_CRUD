@@ -7,7 +7,7 @@ import (
 type Employ struct {
 	gorm.Model
 
-	Empid   string  `gorm:"primary_key;auto_increment" json:"empif"`
+	Empid   string  `gorm:"primary_key;auto_increment" json:"empid"`
 	EmpName string  `json:"empname"`
 	DeptID  string  `json :"deptid"`
 	Salary  float64 `json :"salary"`

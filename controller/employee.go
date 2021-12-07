@@ -115,3 +115,46 @@ func GetUserbyid(c *gin.Context) {
 
 
 }
+
+func UpdateUser(c *gin.Context){
+
+	id := c.Param("empid")
+
+	var emp = new(models.Employ)
+
+	db := database.DB
+
+	err := c.BindJSON(&emp)
+
+	if err != nil {
+
+		panic(err)
+	}
+
+	var e models.Employ
+
+	db.Find(&emp, id)
+
+	e.EmpName = emp.EmpName
+	e.Address= emp.Address
+	e.Email= emp.Email
+	e.Phone= emp.Phone
+
+	result := db.Save(&e)
+
+	if result != nil {
+		fmt.Println("Post sucessfully uploaded")
+	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "emp": &e})
+
+	}else {
+        c.JSON(http.StatusInternalServerError, 
+            gin.H{"status": http.StatusInternalServerError, "error": "Failed to create the user"})
+    } 
+
+
+	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK})
+
+
+
+}
+
